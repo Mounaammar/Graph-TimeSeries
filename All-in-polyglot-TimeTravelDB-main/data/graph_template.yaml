@@ -1,0 +1,14 @@
+nodes:
+  - labels: ["Station"]
+    count: 3
+    template:
+      available_bikes:          
+        DataType: "int"
+        Quantity: 3
+
+edges:
+  - label: "Trip"
+    count: 5
+    from: "Station"
+    to: "Station"
+   

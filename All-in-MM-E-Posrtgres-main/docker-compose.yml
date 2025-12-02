@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  pg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pg-mmdb
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mmdb
+    ports:
+      - "5433:5432"
+    # Preload TimescaleDB
+    command: ["postgres", "-c", "shared_preload_libraries=timescaledb"]
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d:ro
