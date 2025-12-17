@@ -13,12 +13,13 @@ REPLACE INTO stations VALUES
   (2,'Riverside',10),
   (3,'Museum',8);
 
--- Time-series table (ColumnStore)
+-- Time-series table (for demo purposes we use InnoDB here to avoid
+-- ColumnStore's DBRM read-only restrictions in some container setups)
 CREATE TABLE IF NOT EXISTS available_bikes_ts (
   station_id BIGINT UNSIGNED,
   ts         DATETIME,
   value      INT
-) ENGINE=Columnstore;
+) ENGINE=InnoDB;
 
 TRUNCATE available_bikes_ts;
 

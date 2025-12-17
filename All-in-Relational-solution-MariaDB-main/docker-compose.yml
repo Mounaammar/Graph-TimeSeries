@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  mcs1:
+    image: mariadb/columnstore
+    container_name: mcs1
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    shm_size: 512m
+    environment:
+      - PM1=mcs1
+
+  mariadb_graph:
+    image: mariadb:11.1
+    container_name: mariadb_graph
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+    ports:
+      - "3308:3306"

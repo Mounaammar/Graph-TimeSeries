@@ -1,0 +1,40 @@
+node_modules/
+coverage/
+dist/
+build/
+*.log
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+.env
+.env.local
+.env.*
+
+# Docker / volumes
+**/influxdb-data/
+**/docker-data/
+**/initdb.d/
+**/pgdata/
+**/tmp/
+**/.venv/
+**/venv/
+**/.python-version
+
+# Project-specific DB volumes / external repos
+All-in-document-solution-mongodb-main/data/
+All-in-polyglot-TimeTravelDB-main/time-travel-db-v-2/
+
+# Editor/OS
+.idea/
+.vscode/
+*.iml
+
+# Archives / dumps
+**/*.sql
+**/*.dump
+**/*.tar.gz
+**/*.tgz
+**/*.zip
+

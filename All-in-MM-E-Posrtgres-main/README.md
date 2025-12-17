@@ -9,7 +9,7 @@ This repo exposes a tiny example using **bike-sharing** dataset and shows an **i
 ## Start docker container
 
 ```bash
-docker compose up -d --build
+docker compose up -d --build            # exposes Postgres on 5433
 docker exec -it pg-mmdb psql -U postgres -d mmdb
 ````
 
@@ -20,5 +20,5 @@ docker exec -it pg-mmdb psql -U postgres -d mmdb
 LOAD 'age';
 SET search_path = ag_catalog, "$user", public;
 ````
-- Copy and paste the query from query.sql file
-- (if the data could not be loaded when creating the docker container, copy paste content of the data/data.sql file in the cli directly)
+- Copy and paste the query from `query.sql`
+- If the seed data is missing, copy/paste `data/data.sql` into the `psql` session.
