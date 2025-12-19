@@ -61,8 +61,3 @@ This stops containers but leaves any local Docker volumes intact so you can re-r
 - MariaDB ColumnStore + OQGRAPH: start both containers (per README), load `data/create_data_graph.sql` and `data/create_data_ts.sql`, then run `query`; expect grouped neighbor names.
 - InfluxDB: start compose with required env vars, run `./scripts/write_data.sh`, paste `queries/low_neighbors_at_t.flux` into UI; expect station results.
 - TTDB / ArcadeDB: manual/prototype; follow their docs; no automated smoke included here.
-
-## Suggested Naming (optional)
-
-If you prefer consistency, consider renaming folders to drop `-main` and fix typos (e.g., `All-in-MM-Postgres`).
-
