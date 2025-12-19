@@ -6,10 +6,9 @@ LOAD 'age';
 SET search_path = ag_catalog, "$user", public;
 
 
--- --------Hypertable for time series--------
 
-CREATE TABLE public.available_bikes(
-  station_id BIGINT NOT NULL REFERENCES public.stations(id),
+CREATE TABLE IF NOT EXISTS public.available_bikes(
+  station_id BIGINT NOT NULL,
   ts         TIMESTAMPTZ NOT NULL,
   value      INT NOT NULL
 );

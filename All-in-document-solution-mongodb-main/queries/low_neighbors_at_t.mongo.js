@@ -1,9 +1,11 @@
-use('bike-sharing');
+use('bike_sharing');
 
-// Read query: Stations with a Low-Availability
-Neighbor at Time t (MongoDB)
+// Read query: Stations with a Low-Availability Neighbor at Time t (MongoDB)
 
 const threshold = 3;             
+
+print("=== Low-availability neighbor stations at t = 2025-08-04T10:20:00Z (threshold <= " + threshold + ") ===");
+
 db.edges.aggregate([
   { $lookup: {
       from: "metrics_ts",
@@ -25,4 +27,4 @@ db.edges.aggregate([
   { $match: { "n.value": { $lte: threshold } } },
   { $group: { _id: "$src", lowNeighbors: { $addToSet: "$dst" } } },
   { $project: { _id: 0, src: "$_id", lowNeighbors: 1 } }
-])
+]).forEach(doc => printjson(doc));
