@@ -35,14 +35,14 @@ curl -sS "${AUTH_ARGS[@]}" \
   "${ARCADE_URL}/api/v1/server" >/dev/null || true
 
 echo "Seeding demo schema and data into '${DB_NAME}'..."
-SEED_SQL=$(tr '\n' ' ' < schema_and_data.sql)
+SEED_SQL=$(sed 's/--.*$//' data/schema_and_data.sql | tr -d '\r' | tr '\n' ' ' | sed 's/  */ /g')
 curl -sS "${AUTH_ARGS[@]}" \
   -H "Content-Type: application/json" \
   -d "{\"language\":\"sqlscript\",\"command\":\"${SEED_SQL}\"}" \
   "${ARCADE_URL}/api/v1/command/${DB_NAME}" >/dev/null
 
 echo "Running hybrid graph + time-series query from query.sql..."
-QUERY_SQL=$(tr '\n' ' ' < query.sql)
+QUERY_SQL=$(sed 's/--.*$//' query.sql | tr -d '\r' | tr '\n' ' ' | sed 's/  */ /g')
 RESPONSE=$(curl -sS "${AUTH_ARGS[@]}" \
   -H "Content-Type: application/json" \
   -d "{\"language\":\"sqlscript\",\"command\":\"${QUERY_SQL}\"}" \
@@ -57,3 +57,4 @@ fi
 
 echo
 echo "Done. You should see the ArcadeDB low-neighbor query result (JSON) above."
+trap 'echo ""; echo "Press Enter to close..."; read -r' EXIT
